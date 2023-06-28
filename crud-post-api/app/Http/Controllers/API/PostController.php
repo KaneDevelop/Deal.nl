@@ -14,8 +14,15 @@ class PostController extends Controller
         return response()->json(['data' => $posts]);
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
+        //TODO: Validation returned welcome page, maak middelware
+        // $this->validate($request, [
+        //     'title' => 'required|unique:posts|max:255',
+        //     'content' => 'required',
+        // ]);
+
+
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
@@ -26,17 +33,13 @@ class PostController extends Controller
         return response()->json(['message' => 'Post created successfully', 'data' => $post], 201);
     }
 
-    public function read()
+    public function show(Post $post)
     {
-        $posts = Post::all();
-
-        return response()->json($posts);
+        return response()->json($post);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Post $post)
     {
-        $post = Post::findorfail($request->id);
-
         $post->title = $request->title;
         $post->content = $request->content;
         $post->update();
@@ -44,9 +47,9 @@ class PostController extends Controller
         return response()->json(['message' => 'Post updated successfully', 'data' => $post]);
     }
 
-    public function delete(Request $request)
+    public function destroy(Request $request, Post $post)
     {
-        $post = Post::findorfail($request->id)->delete();
+        $post->delete();
 
         return response()->json(['message' => 'Post deleted successfully']);
     }

@@ -20,8 +20,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('post', PostController::class);
-
-Route::post('create', [App\Http\Controllers\API\PostController::class, 'create']);
-Route::get('read', [App\Http\Controllers\API\PostController::class, 'read']);
-Route::put('update', [App\Http\Controllers\API\PostController::class, 'update']);
-Route::delete('delete', [App\Http\Controllers\API\PostController::class, 'delete']);
