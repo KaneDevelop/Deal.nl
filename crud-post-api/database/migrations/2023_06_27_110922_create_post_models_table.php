@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->unsignedBigInteger('author')->references('id')->on('user')->onDelete('cascade');
-            $table->index('author');
+            //$table->unsignedBigInteger('author')->references('id')->on('user')->onDelete('cascade');
+            $table->string('author');
             $table->date('published_at');
 
         });
